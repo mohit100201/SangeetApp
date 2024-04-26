@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -138,6 +139,7 @@ fun ShowPlayerView(myExoPlayer: ExoPlayer, myViewModel: MyViewModel,
 
 ) {
 
+    val myContext= LocalContext.current
 
     
     Row (
@@ -149,8 +151,8 @@ fun ShowPlayerView(myExoPlayer: ExoPlayer, myViewModel: MyViewModel,
     ){
         IconButton(onClick = {
             myViewModel.playPreviousSong()
-            MyExoPlayer.startPlaying(myViewModel.songList.value[myViewModel.currentSongIndex.value],myViewModel.myContext,myViewModel)
-            onSongChanged(myViewModel.songList.value[myViewModel.currentSongIndex.value])
+            MyExoPlayer.startPlaying(myViewModel.songList.value[myViewModel.currentSongIndex.intValue],myContext,myViewModel)
+            onSongChanged(myViewModel.songList.value[myViewModel.currentSongIndex.intValue])
 
         }) {
             Icon(imageVector = Icons.Filled.SkipPrevious, contentDescription = null)
@@ -182,12 +184,14 @@ fun ShowPlayerView(myExoPlayer: ExoPlayer, myViewModel: MyViewModel,
 
         }
 
+        val myContext= LocalContext.current
+
 
 
         IconButton(onClick = {
             myViewModel.playNextSong()
-            MyExoPlayer.startPlaying(myViewModel.songList.value[myViewModel.currentSongIndex.value],myViewModel.myContext,myViewModel)
-            onSongChanged(myViewModel.songList.value[myViewModel.currentSongIndex.value])
+            MyExoPlayer.startPlaying(myViewModel.songList.value[myViewModel.currentSongIndex.intValue],myContext,myViewModel)
+            onSongChanged(myViewModel.songList.value[myViewModel.currentSongIndex.intValue])
 
 
 

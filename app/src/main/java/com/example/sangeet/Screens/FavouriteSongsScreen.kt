@@ -37,7 +37,7 @@ import com.example.sangeet.MyViewModel
 @Composable
 fun ShowFavouriteSongs(myViewModel: MyViewModel,navController:NavController) {
     val songList= remember {
-        myViewModel.favouriteSongList
+        myViewModel.songList
 
     }
     

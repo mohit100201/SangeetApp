@@ -48,7 +48,7 @@ import kotlinx.coroutines.withContext
 class MyViewModel():ViewModel(){
 
     var categories= mutableListOf<Category>()
-    var favouriteSongList=MutableStateFlow<List<Songs>>(emptyList())
+
 
     var Punjabi=MutableStateFlow<List<Songs>>(emptyList())
 
@@ -58,7 +58,7 @@ class MyViewModel():ViewModel(){
 
     var currentCategory=Category()
 
-    lateinit var myContext:Context
+//    lateinit var myContext:Context
 
     var isStarted:Boolean=true
 
@@ -86,9 +86,7 @@ class MyViewModel():ViewModel(){
         return songList.value.isEmpty()
 
     }
-    fun isFavListEmpty():Boolean{
-        return  favouriteSongList.value.isEmpty()
-    }
+
 
     fun setCategory(category: Category){
         this.currentCategory =category
@@ -282,7 +280,7 @@ class MyViewModel():ViewModel(){
 
            }
 
-           favouriteSongList.value=lst
+           songList.value=lst
        }
        catch (e:Exception){
            Log.d("MOHIT",e.toString())

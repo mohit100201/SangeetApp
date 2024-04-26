@@ -362,7 +362,7 @@ fun ShowSong(songs: Songs,modifier: Modifier=Modifier,myViewModel: MyViewModel,n
 
 
 
-    val MYcontext= LocalContext.current
+    val mycontext= LocalContext.current
 
 
 
@@ -371,7 +371,7 @@ fun ShowSong(songs: Songs,modifier: Modifier=Modifier,myViewModel: MyViewModel,n
                 .fillMaxWidth()
                 .clickable {
 
-                    MyExoPlayer.startPlaying(songs, MYcontext, myViewModel)
+                    MyExoPlayer.startPlaying(songs, mycontext, myViewModel)
                     myViewModel.currentSongIndex.intValue = Index
                     myViewModel.isClicked.value = true
                     navController.navigate("SongPlayScreen")
