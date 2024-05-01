@@ -1,4 +1,4 @@
- package com.example.sangeet
+package com.example.sangeet
 
 import android.content.Context
 import android.media.MediaPlayer
@@ -67,7 +67,7 @@ class MyViewModel():ViewModel(){
     var currentSong:Songs?= null
 
     var isClicked= mutableStateOf(false)
-   var isFav= mutableStateOf(false)
+    var isFav= mutableStateOf(false)
 
 
 
@@ -114,8 +114,8 @@ class MyViewModel():ViewModel(){
     }
 
     fun fetchSongList(category: Category)= CoroutineScope(Dispatchers.IO).launch {
-       val collectionRef=Firebase.firestore.collection("songs")
-       val querySnapshot=collectionRef.whereIn("id",category.songs).get().await()
+        val collectionRef=Firebase.firestore.collection("songs")
+        val querySnapshot=collectionRef.whereIn("id",category.songs).get().await()
         val newSongList = mutableListOf<Songs>()
 
 
@@ -133,7 +133,7 @@ class MyViewModel():ViewModel(){
     }
 
     fun fetchSection()= CoroutineScope(Dispatchers.IO).launch {
-       val QuerySnapshot=Firebase.firestore.collection("sections").get().await()
+        val QuerySnapshot=Firebase.firestore.collection("sections").get().await()
         var section:Category= Category()
 
         for( cat in QuerySnapshot.documents ){
@@ -166,6 +166,7 @@ class MyViewModel():ViewModel(){
         }
 
         Punjabi.value=newSongList
+
 
 
     }
@@ -206,6 +207,7 @@ class MyViewModel():ViewModel(){
         }
 
         oldSongs.value=newSongList
+
 
 
     }
@@ -249,12 +251,12 @@ class MyViewModel():ViewModel(){
             try {
                 val db = Firebase.firestore.collection("songs")
                 db.document(songId).update("isFavourite", isFav.value).await()
-               Log.d("MOHIT","Song Updated")
+                Log.d("MOHIT","Song Updated")
             } catch (e: Exception) {
                 Log.d("MOHIT",e.toString())
             }
         } else {
-           Log.d("MOHIT","Song Null")
+            Log.d("MOHIT","Song Null")
         }
 
 
@@ -265,30 +267,29 @@ class MyViewModel():ViewModel(){
 
     fun fetchFavouriteSongs()= CoroutineScope(Dispatchers.IO).launch {
 
-       try {
-           val querySnapshot=Firebase.firestore.collection("songs").whereEqualTo("isFavourite",true).get().await()
-           val lst= mutableListOf<Songs>()
+        try {
+            val querySnapshot=Firebase.firestore.collection("songs").whereEqualTo("isFavourite",true).get().await()
+            val lst= mutableListOf<Songs>()
 
-           for(document in querySnapshot.documents){
+            for(document in querySnapshot.documents){
 
-               val song=document.toObject<Songs>()
+                val song=document.toObject<Songs>()
 
-               song?.let {
-                   lst.add(song)
-               }
+                song?.let {
+                    lst.add(song)
+                }
 
 
-           }
+            }
 
-           songList.value=lst
-       }
-       catch (e:Exception){
-           Log.d("MOHIT",e.toString())
-       }
+            songList.value=lst
+        }
+        catch (e:Exception){
+            Log.d("MOHIT",e.toString())
+        }
 
 
     }
 
 }
-
 

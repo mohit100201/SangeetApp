@@ -106,7 +106,7 @@ fun SplashScreen(navController: NavController,myViewModel: MyViewModel) {
 
     ){
 
-            CircularProgressIndicator(Modifier.size(32.dp))
+        CircularProgressIndicator(Modifier.size(32.dp))
 
 
 
@@ -115,5 +115,3 @@ fun SplashScreen(navController: NavController,myViewModel: MyViewModel) {
 
 
 }
-
-

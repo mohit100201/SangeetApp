@@ -67,6 +67,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(navController: NavController,modifier: Modifier=Modifier,myViewModel: MyViewModel) {
 
+
+
     Box(modifier=Modifier.fillMaxSize()){
         Column (modifier = modifier
             .fillMaxSize()
@@ -104,6 +106,7 @@ fun HomeScreen(navController: NavController,modifier: Modifier=Modifier,myViewMo
 
             // sections
             val punjabiSongs=myViewModel.Punjabi
+
             Text(
                 text = "Punjabi",
 
@@ -117,7 +120,7 @@ fun HomeScreen(navController: NavController,modifier: Modifier=Modifier,myViewMo
                 modifier=Modifier.height(200.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)){
                itemsIndexed(punjabiSongs.value){index, item ->
-                   ShowSectionSong(songs = item, navController =navController , myViewModel = myViewModel, Index =index )
+                   ShowSectionSong(type="punjabi",songs = item, navController =navController , myViewModel = myViewModel, Index =index )
 
                }
                
@@ -141,7 +144,7 @@ fun HomeScreen(navController: NavController,modifier: Modifier=Modifier,myViewMo
                 modifier=Modifier.height(200.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)){
                 itemsIndexed(old.value){index, item ->
-                    ShowSectionSong(songs = item, navController =navController , myViewModel = myViewModel, Index =index )
+                    ShowSectionSong(type="old",songs = item, navController =navController , myViewModel = myViewModel, Index =index )
 
                 }
 
@@ -275,7 +278,7 @@ fun StatusBar(myViewModel: MyViewModel,navController: NavController) {
 }
 
 @Composable
-fun ShowSectionSong(songs: Songs,navController: NavController,myViewModel: MyViewModel,Index:Int) {
+fun ShowSectionSong(type:String,songs: Songs,navController: NavController,myViewModel: MyViewModel,Index:Int) {
     val context= LocalContext.current.applicationContext
 
 
@@ -285,6 +288,14 @@ fun ShowSectionSong(songs: Songs,navController: NavController,myViewModel: MyVie
             MyExoPlayer.startPlaying(songs,context, myViewModel)
             myViewModel.currentSongIndex.intValue = Index
             myViewModel.isClicked.value = true
+            if(type=="punjabi"){
+                myViewModel.songList.value=myViewModel.Punjabi.value
+
+            }
+            else{
+                myViewModel.songList.value=myViewModel.oldSongs.value
+            }
+
             navController.navigate("SongPlayScreen")
 
 

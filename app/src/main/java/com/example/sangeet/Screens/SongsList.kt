@@ -208,6 +208,10 @@ fun SongDetail(myViewModel: MyViewModel,modifier: Modifier,navController: NavCon
 
 
 
+
+
+
+
     Row (
         modifier = modifier.padding(10.dp)
     ){
@@ -245,7 +249,7 @@ fun SongDetail(myViewModel: MyViewModel,modifier: Modifier,navController: NavCon
 
                 ){
                     Text(text = "Now Playing", fontFamily = FontFamily.Default, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                    Text(text = songs.title, fontFamily = FontFamily.Default, fontSize = 15.sp, fontWeight = FontWeight.Thin)
+                    Text(text = songs.title, fontFamily = FontFamily.Default, fontSize = 18.sp, fontWeight = FontWeight.Thin)
 
                 }
 
@@ -362,7 +366,7 @@ fun ShowSong(songs: Songs,modifier: Modifier=Modifier,myViewModel: MyViewModel,n
 
 
 
-    val mycontext= LocalContext.current
+    val MYCONTEXT= LocalContext.current
 
 
 
@@ -371,7 +375,7 @@ fun ShowSong(songs: Songs,modifier: Modifier=Modifier,myViewModel: MyViewModel,n
                 .fillMaxWidth()
                 .clickable {
 
-                    MyExoPlayer.startPlaying(songs, mycontext, myViewModel)
+                    MyExoPlayer.startPlaying(songs, MYCONTEXT, myViewModel)
                     myViewModel.currentSongIndex.intValue = Index
                     myViewModel.isClicked.value = true
                     navController.navigate("SongPlayScreen")

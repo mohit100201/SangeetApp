@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
     }
 
 
-   
+
 }
 
 
@@ -75,15 +75,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun App(myViewModel: MyViewModel) {
-   val navController= rememberNavController()
+    val navController= rememberNavController()
 
 
-BackHandler(enabled = true) {
-    myViewModel.songList.value= emptyList()
+    BackHandler(enabled = true) {
+        myViewModel.songList.value= emptyList()
 
 
 
-}
+    }
 
     NavHost(navController = navController, startDestination = "Splash" ){
         composable(route="Home"){
@@ -100,11 +100,11 @@ BackHandler(enabled = true) {
 
             LaunchedEffect(Unit) {
 
-                    myViewModel.songList.value= emptyList()
-                    myViewModel.fetchSongList(myViewModel.getCategory())
+                myViewModel.songList.value= emptyList()
+                myViewModel.fetchSongList(myViewModel.getCategory())
 
             }
-           SongsList(myViewModel.getCategory(),myViewModel,navController)
+            SongsList(myViewModel.getCategory(),myViewModel,navController)
         }
 
         composable(route="SongPlayScreen"){
@@ -117,8 +117,7 @@ BackHandler(enabled = true) {
     }
 
 
-   
+
 
 
 }
-
